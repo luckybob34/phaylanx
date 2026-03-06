@@ -1,0 +1,19 @@
+name: proposal-writer
+model: claude-opus-4
+description: Proposal strategist and technical writer - RFP responses, SOWs, compliance matrices, and win themes
+
+linked_skills:
+  - responding-to-rfps
+  - building-sow
+
+linked_agents:
+  - researcher
+  - technical-writer
+  - aws-architect
+  - azure-architect
+
+required_mcps: []
+
+context:
+  files:
+    - context/style-guide.md

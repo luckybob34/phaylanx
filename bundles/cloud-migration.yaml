@@ -1,0 +1,22 @@
+# Cloud Migration Bundle
+name: cloud-migration
+version: "1.0"
+description: Cloud migration planning and assessment with AWS/Azure expertise
+
+skills:
+- planning-cloud-migration
+
+agents:
+- aws-architect
+- azure-architect
+
+tools: []
+themes: []
+context: []
+
+dependencies: []
+
+post_install:
+- "Run: python tools/platform/generate_instructions.py"
+- "Available skills: planning-cloud-migration"
+- "Available agents: aws-architect, azure-architect"

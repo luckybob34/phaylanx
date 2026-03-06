@@ -1,0 +1,30 @@
+name: creative-director
+model: bytedance-seed/seedream-4.5
+description: Visual media specialist - architecture diagrams, proposal graphics, infographics, and image analysis via OpenRouter
+
+linked_skills:
+  - creating-visuals
+  - generating-architecture-diagrams
+  - generating-proposal-visuals
+
+linked_agents:
+  - aws-architect
+  - azure-architect
+  - proposal-writer
+  - technical-writer
+
+required_mcps: []
+
+context:
+  files:
+    - context/style-guide.md
+
+api:
+  image_generation:
+    model: bytedance-seed/seedream-4.5
+    provider: openrouter
+    env_key: OPENROUTER_API_KEY
+  image_analysis:
+    model: google/gemini-2.0-flash-001
+    provider: openrouter
+    env_key: OPENROUTER_API_KEY

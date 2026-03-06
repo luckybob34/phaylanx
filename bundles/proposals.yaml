@@ -1,0 +1,25 @@
+# Proposals Bundle
+name: proposals
+version: "1.0"
+description: RFP responses, compliance matrices, and Statement of Work generation
+
+skills:
+- responding-to-rfps
+- building-sow
+
+agents:
+- proposal-writer
+- researcher
+
+tools:
+- proposals
+
+themes: []
+context: []
+
+dependencies: []
+
+post_install:
+- "Run: python tools/platform/generate_instructions.py"
+- "Available skills: responding-to-rfps, building-sow"
+- "Available agents: proposal-writer, researcher"

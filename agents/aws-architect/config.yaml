@@ -1,0 +1,26 @@
+name: aws-architect
+description: Senior AWS Solutions Architect - designs cloud architectures following Well-Architected Framework
+model: claude-opus-4
+
+linked_skills:
+  - designing-architecture
+  - planning-cloud-migration
+  - reviewing-architecture
+
+linked_agents:
+  - azure-architect
+  - iac-engineer
+  - devops-engineer
+  - technical-writer
+  - proposal-writer
+
+required_mcps: []
+
+context:
+  files: []
+  notes: |
+    Add AWS-specific reference material to agents/aws-architect/context/:
+    - Well-Architected Framework cheat sheets
+    - Common architecture patterns (3-tier, serverless, event-driven)
+    - Pricing baselines for common service configurations
+    - Security baseline templates (SCPs, IAM boundaries)

@@ -1,0 +1,24 @@
+name: devops-engineer
+description: Senior DevOps Engineer - builds CI/CD pipelines, operational automation, and monitoring
+model: claude-opus-4
+
+linked_skills:
+  - deploying-infrastructure
+  - designing-architecture
+
+linked_agents:
+  - iac-engineer
+  - aws-architect
+  - azure-architect
+  - technical-writer
+
+required_mcps: []
+
+context:
+  files: []
+  notes: |
+    Add DevOps reference material to agents/devops-engineer/context/:
+    - GitHub Actions workflow templates
+    - Azure DevOps pipeline templates
+    - Deployment strategy patterns (blue-green, canary, rolling)
+    - Monitoring and alerting configuration examples

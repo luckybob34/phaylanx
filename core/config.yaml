@@ -1,0 +1,35 @@
+# Global Configuration
+
+# Default behavior settings
+default_theme: minimal
+default_tone: professional
+default_format: markdown
+brand: none
+
+# Available PPTX themes
+pptx_themes:
+- credera
+
+# Available HTML themes
+html_themes:
+- minimal
+- credera
+- quanta
+
+# Theme paths
+theme_path_html: context/templates/presentations/themes
+theme_path_pptx: context/templates/presentations/themes/pptx
+
+# Model preferences (override per agent in .claude/agents/)
+models:
+  strong: claude-opus-4
+  fast: claude-sonnet-4-6
+  image: bytedance-seed/seedream-4.5
+
+# Registry configuration (for bundle installation)
+registry:
+  url: https://github.com/luckybob34/phaylanx
+  branch: main
+  auth_env: GITHUB_PAT
+  cache_dir: .tmp/registry-cache
+  cache_ttl: 3600

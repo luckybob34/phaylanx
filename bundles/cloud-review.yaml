@@ -1,0 +1,22 @@
+# Cloud Review Bundle
+name: cloud-review
+version: "1.0"
+description: Architecture review, audit, and optimization recommendations
+
+skills:
+- reviewing-architecture
+
+agents:
+- aws-architect
+- azure-architect
+
+tools: []
+themes: []
+context: []
+
+dependencies: []
+
+post_install:
+- "Run: python tools/platform/generate_instructions.py"
+- "Available skills: reviewing-architecture"
+- "Available agents: aws-architect, azure-architect"

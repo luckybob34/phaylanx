@@ -1,0 +1,24 @@
+# Cloud IaC Bundle
+name: cloud-iac
+version: "1.0"
+description: Infrastructure as Code deployment with Terraform and Bicep
+
+skills:
+- deploying-infrastructure
+
+agents:
+- iac-engineer
+- devops-engineer
+
+tools:
+- iac
+
+themes: []
+context: []
+
+dependencies: []
+
+post_install:
+- "Run: python tools/platform/generate_instructions.py"
+- "Available skills: deploying-infrastructure"
+- "Available agents: iac-engineer, devops-engineer"

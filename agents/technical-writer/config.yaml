@@ -1,0 +1,15 @@
+name: technical-writer
+model: claude-sonnet-4-6
+description: Senior technical writer for SOPs, architecture docs, RFP responses, and executive summaries
+
+linked_skills:
+  - building-apps
+
+linked_agents:
+  - researcher
+
+required_mcps: []
+
+context:
+  files:
+    - context/style-guide.md

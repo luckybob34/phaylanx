@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PAGE_TITLE}}</title>
+
+<!-- ============================================================
+     THEME CSS - Swap this <link> to change the visual theme.
+     Default: minimal.css (brand-agnostic)
+     For theme variants, add data-variant="name" to <html>.
+============================================================ -->
+<link rel="stylesheet" href="themes/minimal.css">
+
+<style>
+    /* ============================================================
+       BASE ENGINE - Structural layout only.
+       Colors, fonts, and brand-specific styles belong in the
+       theme CSS file referenced above. Do NOT edit this block
+       unless changing the slide engine mechanics.
+    ============================================================ */
+
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { overflow: hidden; height: 100vh; }
+
+    /* App shell */
+    .app {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    /* Navigation sidebar - structural */
+    .nav {
+        width: var(--nav-width, 200px);
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 100;
+    }
+
+    .nav-brand  { flex-shrink: 0; }
+    .nav-menu   { flex: 1; overflow-y: auto; list-style: none; padding: 0; }
+    .nav-item, .nav-section-label, .nav-divider { list-style: none; }
+    .nav-footer { flex-shrink: 0; }
+    .nav-link   { display: block; text-decoration: none; cursor: pointer; user-select: none; }
+
+    .nav-controls { display: flex; justify-content: center; }
+    .nav-btn {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: none;
+    }
+    .nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+    /* Top progress bar - hidden by default; themes opt-in */
+    .top-progress {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: var(--nav-width, 200px);
+        height: 3px;
+        z-index: 200;
+        transition: width 0.6s var(--slide-easing, cubic-bezier(0.77, 0, 0.175, 1));
+    }
+
+    /* Slide viewport */
+    .slide-viewport {
+        flex: 1;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .slide-track {
+        height: 100%;
+        transition: transform 0.6s var(--slide-easing, cubic-bezier(0.77, 0, 0.175, 1));
+    }
+
+    /* Slides */
+    .slide {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .slide-inner {
+        position: relative;
+        z-index: 2;
+    }
+
+    .slide-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+    }
+
+    .slide-number {
+        position: absolute;
+        z-index: 3;
+    }
+</style>
+</head>
+<body>
+
+<!-- Top progress bar (hidden unless theme enables it) -->
+<div class="top-progress" id="topProgress"></div>
+
+<div class="app">
+
+    <!-- ===================================================
+         SIDEBAR NAVIGATION
+         Update nav items to match your slides. Each .nav-link
+         must have data-slide="N" (0-indexed). Use .nav-divider
+         for separators and .nav-section-label for group headers.
+    =================================================== -->
+    <nav class="nav">
+        <div class="nav-brand">
+            <!-- Replace with brand logo SVG/image or text -->
+            PRESENTATION TITLE
+            <span class="nav-brand-sub">Subtitle or Date</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-section-label">Section One</li>
+            <li class="nav-item"><a class="nav-link active" data-slide="0">Title Slide</a></li>
+            <li class="nav-item"><a class="nav-link" data-slide="1">Overview</a></li>
+
+            <li class="nav-divider"></li>
+            <li class="nav-section-label">Section Two</li>
+            <li class="nav-item"><a class="nav-link" data-slide="2">Section Break</a></li>
+            <li class="nav-item"><a class="nav-link" data-slide="3">Comparison</a></li>
+
+            <li class="nav-divider"></li>
+            <li class="nav-section-label">Section Three</li>
+            <li class="nav-item"><a class="nav-link" data-slide="4">Metrics</a></li>
+            <li class="nav-item"><a class="nav-link" data-slide="5">Components</a></li>
+        </ul>
+
+        <div class="nav-footer">
+            <div class="nav-progress">
+                <div class="nav-progress-fill" id="navProgressFill"></div>
+            </div>
+            <div class="slide-counter">
+                <span class="current" id="currentSlide">1</span>
+                /
+                <span id="totalSlides">6</span>
+            </div>
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn" aria-label="Previous slide">&#9650;</button>
+                <button class="nav-btn" id="nextBtn" aria-label="Next slide">&#9660;</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================================================
+         SLIDE VIEWPORT
+         Each .slide needs:
+           - data-index="N"  (0-indexed, sequential)
+           - A slide type class: slide-dark | slide-light |
+             slide-gray | slide-accent
+         First slide must include the "visible" class.
+         All content goes inside .slide-inner.
+    =================================================== -->
+    <div class="slide-viewport">
+        <div class="slide-track" id="slideTrack">
+
+            <!-- SLIDE 0 ─ Hero / Title (slide-dark) ─────────
+                 Use for: opening/closing slides, big statements
+            ──────────────────────────────────────────────── -->
+            <div class="slide slide-dark visible" data-index="0">
+                <div class="slide-inner">
+                    <p class="hero-subtitle">{{BRAND_NAME}}</p>
+                    <h1 class="hero-title">Presentation<br>Title Here</h1>
+                    <p class="hero-desc">
+                        A concise description of what this presentation covers
+                        and for whom it is intended.
+                    </p>
+                </div>
+                <div class="slide-footer"></div>
+                <div class="slide-number">1 / 6</div>
+            </div>
+
+            <!-- SLIDE 1 ─ Content (slide-light) ─────────────
+                 Use for: data-heavy content, tables, callouts
+            ──────────────────────────────────────────────── -->
+            <div class="slide slide-light" data-index="1">
+                <div class="slide-inner">
+                    <p class="section-eyebrow">Section Label</p>
+                    <h2 class="slide-title">Slide Title</h2>
+                    <p class="slide-subtitle">Supporting context or a one-line description of the slide content.</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Column A</th><th>Column B</th><th>Column C</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Row 1</strong></td><td>Value</td><td>Value</td></tr>
+                            <tr><td><strong>Row 2</strong></td><td>Value</td><td>Value</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="callout">
+                        <div class="callout-label">Key Insight</div>
+                        <p>Important takeaway that reinforces the slide's main point.</p>
+                    </div>
+                </div>
+                <div class="slide-footer"></div>
+                <div class="slide-number">2 / 6</div>
+            </div>
+
+            <!-- SLIDE 2 ─ Section Divider (slide-accent) ────
+                 Use for: section breaks between topic groups
+            ──────────────────────────────────────────────── -->
+            <div class="slide slide-accent" data-index="2">
+                <div class="slide-inner" style="text-align:center;">
+                    <p class="section-eyebrow">Part 02</p>
+                    <h2 class="slide-title">Section<br>Title</h2>
+                    <p class="slide-subtitle">
+                        Brief description of what this section covers.
+                    </p>
+                </div>
+                <div class="slide-footer"></div>
+                <div class="slide-number">3 / 6</div>
+            </div>
+
+            <!-- SLIDE 3 ─ Two-Column (slide-gray) ───────────
+                 Use for: comparisons, side-by-side content
+            ──────────────────────────────────────────────── -->
+            <div class="slide slide-gray" data-index="3">
+                <div class="slide-inner">
+                    <p class="section-eyebrow">Section Label</p>
+                    <h2 class="slide-title">Two-Column Layout</h2>
+                    <p class="slide-subtitle">Use this layout for comparisons or parallel content.</p>
+
+                    <div class="two-col">
+                        <div>
+                            <div class="two-col-header">Left Column</div>
+                            <table class="data-table">
+                                <thead><tr><th>Item</th><th>Value</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>Alpha</strong></td><td>Content</td></tr>
+                                    <tr><td><strong>Beta</strong></td><td>Content</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <div class="two-col-header">Right Column</div>
+                            <table class="data-table">
+                                <thead><tr><th>Item</th><th>Value</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>Gamma</strong></td><td>Content</td></tr>
+                                    <tr><td><strong>Delta</strong></td><td>Content</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-footer"></div>
+                <div class="slide-number">4 / 6</div>
+            </div>
+
+            <!-- SLIDE 4 ─ Stats / Metrics (slide-dark) ──────
+                 Use for: KPIs, recovery objectives, big numbers
+            ──────────────────────────────────────────────── -->
+            <div class="slide slide-dark" data-index="4">
+                <div class="slide-inner">
+                    <p class="section-eyebrow">Section Label</p>
+                    <h2 class="slide-title">Key Metrics</h2>
+                    <p class="slide-subtitle">High-level numbers that frame the story.</p>
+
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">99.9%</div>
+                            <div class="stat-label">Uptime SLA</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">4hr</div>
+                            <div class="stat-label">RTO Target</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">24hr</div>
+                            <div class="stat-label">RPO Target</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-footer"></div>
+                <div class="slide-number">5 / 6</div>
+            </div>
+
+            <!-- SLIDE 5 ─ Card Grid (slide-light) ───────────
+                 Use for: feature lists, grouped items, highlights
+            ──────────────────────────────────────────────── -->
+            <div class="slide slide-light" data-index="5">
+                <div class="slide-inner">
+                    <p class="section-eyebrow">Section Label</p>
+                    <h2 class="slide-title">Card Grid Example</h2>
+                    <p class="slide-subtitle">Showcasing the card and callout components.</p>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Card One</h4>
+                                <p>Description of the first item.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Card Two</h4>
+                                <p>Description of the second item.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Card Three</h4>
+                                <p>Description of the third item.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="callout">
+                        <div class="callout-label">Note</div>
+                        <p>Additional context or a supporting observation for this slide.</p>
+                    </div>
+                </div>
+                <div class="slide-footer"></div>
+                <div class="slide-number">6 / 6</div>
+            </div>
+
+            <!-- ADD MORE SLIDES HERE ─────────────────────────
+                 Copy any slide block above, increment data-index,
+                 update .slide-number text, and add a matching
+                 .nav-link in the sidebar.
+            ──────────────────────────────────────────────── -->
+
+        </div><!-- /.slide-track -->
+    </div><!-- /.slide-viewport -->
+</div><!-- /.app -->
+
+<script>
+/* ===========================================================
+   SLIDE ENGINE v2.0
+   Brand-agnostic presentation engine.
+
+   Features:
+   - Auto-detects slide count from DOM (no manual constant)
+   - .visible class toggling for staggered entry animations
+   - Keyboard (code-based) with input-element exclusion
+   - Mouse wheel (debounced) and touch swipe navigation
+   - Prev / next button support
+   - Dual progress indicators (nav bar + optional top bar)
+   - goToSlide() exposed globally for onclick handlers
+=========================================================== */
+(function () {
+    'use strict';
+
+    const slides       = document.querySelectorAll('.slide');
+    const totalSlides  = slides.length;
+    const track        = document.getElementById('slideTrack');
+    const navLinks     = document.querySelectorAll('.nav-link[data-slide]');
+    const progressFill = document.getElementById('navProgressFill');
+    const topProgress  = document.getElementById('topProgress');
+    const counterCurr  = document.getElementById('currentSlide');
+    const counterTotal = document.getElementById('totalSlides');
+    const prevBtn      = document.getElementById('prevBtn');
+    const nextBtn      = document.getElementById('nextBtn');
+
+    let currentSlide = 0;
+    let isAnimating  = false;
+
+    /* ---- Initialise ---- */
+    if (counterTotal) counterTotal.textContent = totalSlides;
+    if (prevBtn)  prevBtn.disabled = true;
+    updateProgress();
+
+    /* ---- Core navigation ---- */
+    function goToSlide(index) {
+        if (isAnimating || index < 0 || index >= totalSlides) return;
+        if (index === currentSlide) return;
+
+        isAnimating = true;
+
+        // Remove visible from outgoing slide
+        slides[currentSlide].classList.remove('visible');
+
+        currentSlide = index;
+
+        // Translate slide track
+        track.style.transform = 'translateY(-' + (currentSlide * 100) + 'vh)';
+
+        // Update nav active state
+        navLinks.forEach(function (l) { l.classList.remove('active'); });
+        var activeLink = document.querySelector('.nav-link[data-slide="' + currentSlide + '"]');
+        if (activeLink) activeLink.classList.add('active');
+
+        // Update counter
+        if (counterCurr) counterCurr.textContent = currentSlide + 1;
+
+        // Update progress bars
+        updateProgress();
+
+        // Update button states
+        if (prevBtn) prevBtn.disabled = (currentSlide === 0);
+        if (nextBtn) nextBtn.disabled = (currentSlide === totalSlides - 1);
+
+        // Add visible to incoming slide after brief delay (allows CSS entry transitions)
+        setTimeout(function () {
+            slides[currentSlide].classList.add('visible');
+            isAnimating = false;
+        }, 100);
+    }
+
+    function updateProgress() {
+        var pct = ((currentSlide + 1) / totalSlides) * 100;
+        if (progressFill) progressFill.style.width = pct + '%';
+        if (topProgress)  topProgress.style.width  = 'calc((100vw - var(--nav-width, 200px)) * ' + (pct / 100) + ')';
+    }
+
+    // Expose globally so onclick="goToSlide(N)" works inside slides
+    window.goToSlide = goToSlide;
+
+    /* ---- Nav link clicks ---- */
+    navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            var target = parseInt(link.dataset.slide, 10);
+            if (!isNaN(target)) goToSlide(target);
+        });
+    });
+
+    /* ---- Prev / Next buttons ---- */
+    if (prevBtn) prevBtn.addEventListener('click', function () { goToSlide(currentSlide - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goToSlide(currentSlide + 1); });
+
+    /* ---- Keyboard navigation ---- */
+    document.addEventListener('keydown', function (e) {
+        // Skip when user is typing in a form element
+        if (['INPUT', 'TEXTAREA', 'SELECT'].indexOf(e.target.tagName) !== -1) return;
+
+        if (['ArrowDown', 'ArrowRight', 'Space', 'PageDown'].indexOf(e.code) !== -1) {
+            e.preventDefault(); goToSlide(currentSlide + 1);
+        } else if (['ArrowUp', 'ArrowLeft', 'PageUp'].indexOf(e.code) !== -1) {
+            e.preventDefault(); goToSlide(currentSlide - 1);
+        } else if (e.code === 'Home') {
+            e.preventDefault(); goToSlide(0);
+        } else if (e.code === 'End') {
+            e.preventDefault(); goToSlide(totalSlides - 1);
+        }
+    });
+
+    /* ---- Mouse wheel (debounced) ---- */
+    var wheelTimeout = null;
+    document.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        if (wheelTimeout) return;
+        goToSlide(currentSlide + (e.deltaY > 0 ? 1 : -1));
+        wheelTimeout = setTimeout(function () { wheelTimeout = null; }, 80);
+    }, { passive: false });
+
+    /* ---- Touch / swipe ---- */
+    var touchStartY = 0;
+    document.addEventListener('touchstart', function (e) {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+        var delta = touchStartY - e.changedTouches[0].clientY;
+        if (Math.abs(delta) > 50) goToSlide(currentSlide + (delta > 0 ? 1 : -1));
+    }, { passive: true });
+
+})();
+</script>
+</body>
+</html>

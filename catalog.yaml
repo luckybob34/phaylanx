@@ -1,0 +1,169 @@
+# Phaylanx Bundle Catalog
+# ======================
+# Searchable index of all available bundles, standalone skills, agents, and themes.
+# Used by registry.py for --list and --search operations.
+
+version: "1.0"
+registry: https://github.com/luckybob34/phaylanx
+
+bundles:
+
+- name: cloud-architecture
+  description: Cloud architecture design with AWS and Azure specialist agents
+  tags:
+  - cloud
+  - architecture
+  - aws
+  - azure
+  - well-architected
+  skills:
+  - designing-architecture
+  agents:
+  - aws-architect
+  - azure-architect
+  tools:
+  - architecture
+  themes: []
+  context: []
+
+- name: cloud-migration
+  description: Cloud migration planning and assessment with AWS/Azure expertise
+  tags:
+  - cloud
+  - migration
+  - planning
+  - aws
+  - azure
+  skills:
+  - planning-cloud-migration
+  agents:
+  - aws-architect
+  - azure-architect
+  tools: []
+  themes: []
+  context: []
+
+- name: cloud-iac
+  description: Infrastructure as Code deployment with Terraform and Bicep
+  tags:
+  - iac
+  - terraform
+  - bicep
+  - infrastructure
+  - devops
+  skills:
+  - deploying-infrastructure
+  agents:
+  - iac-engineer
+  - devops-engineer
+  tools:
+  - iac
+  themes: []
+  context: []
+
+- name: cloud-review
+  description: Architecture review, audit, and optimization recommendations
+  tags:
+  - cloud
+  - review
+  - audit
+  - optimization
+  - well-architected
+  skills:
+  - reviewing-architecture
+  agents:
+  - aws-architect
+  - azure-architect
+  tools: []
+  themes: []
+  context: []
+
+- name: presentations-html
+  description: Interactive HTML slide deck presentations with pluggable CSS themes
+  tags:
+  - presentations
+  - html
+  - slides
+  - decks
+  skills:
+  - building-html-decks
+  - building-university-decks
+  agents: []
+  tools: []
+  themes:
+  - html/credera.css
+  - html/quanta.css
+  context:
+  - brand/quanta-brand.md
+  - brand/credera-components.md
+  - brand/quanta-components.md
+
+- name: presentations-pptx
+  description: PowerPoint presentations from YAML outlines with branded templates
+  tags:
+  - presentations
+  - powerpoint
+  - pptx
+  - slides
+  skills:
+  - building-pptx-decks
+  agents: []
+  tools:
+  - presentations
+  themes:
+  - pptx/credera
+  context: []
+
+- name: proposals
+  description: RFP responses, compliance matrices, and Statement of Work generation
+  tags:
+  - proposals
+  - rfp
+  - sow
+  - compliance
+  - business
+  skills:
+  - responding-to-rfps
+  - building-sow
+  agents:
+  - proposal-writer
+  - researcher
+  tools:
+  - proposals
+  themes: []
+  context: []
+
+- name: media
+  description: Visual asset generation including architecture diagrams and proposal graphics
+  tags:
+  - media
+  - visuals
+  - diagrams
+  - images
+  - graphics
+  skills:
+  - creating-visuals
+  - generating-architecture-diagrams
+  - generating-proposal-visuals
+  agents:
+  - creative-director
+  tools:
+  - media
+  themes: []
+  context: []
+
+- name: app-development
+  description: Full-stack application development with research and technical writing support
+  tags:
+  - development
+  - apps
+  - coding
+  - full-stack
+  skills:
+  - building-apps
+  agents:
+  - researcher
+  - technical-writer
+  tools: []
+  themes: []
+  context: []

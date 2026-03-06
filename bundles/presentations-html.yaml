@@ -1,0 +1,28 @@
+# Presentations HTML Bundle
+name: presentations-html
+version: "1.0"
+description: Interactive HTML slide deck presentations with pluggable CSS themes
+
+skills:
+- building-html-decks
+- building-university-decks
+
+agents: []
+
+tools: []
+
+themes:
+- html/credera.css
+- html/quanta.css
+
+context:
+- brand/quanta-brand.md
+- brand/credera-components.md
+- brand/quanta-components.md
+
+dependencies: []
+
+post_install:
+- "Run: python tools/platform/generate_instructions.py"
+- "Available skills: building-html-decks, building-university-decks"
+- "Themes installed: credera.css, quanta.css (minimal.css included in core)"

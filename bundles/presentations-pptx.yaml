@@ -1,0 +1,24 @@
+# Presentations PPTX Bundle
+name: presentations-pptx
+version: "1.0"
+description: PowerPoint presentations from YAML outlines with branded templates
+
+skills:
+- building-pptx-decks
+
+agents: []
+
+tools:
+- presentations
+
+themes:
+- pptx/credera
+
+context: []
+
+dependencies: []
+
+post_install:
+- "Run: python tools/platform/generate_instructions.py"
+- "Available skills: building-pptx-decks"
+- "PPTX tools: render_pptx.py, parse_outline.py"

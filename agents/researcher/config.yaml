@@ -1,0 +1,14 @@
+name: researcher
+model: claude-opus-4-6
+description: Systematic research specialist - gathers, synthesizes, and validates information from multiple sources
+
+linked_skills:
+  - building-apps
+
+linked_agents:
+  - technical-writer
+
+required_mcps: []
+
+context:
+  files: []

@@ -1,0 +1,22 @@
+# App Development Bundle
+name: app-development
+version: "1.0"
+description: Full-stack application development with research and technical writing support
+
+skills:
+- building-apps
+
+agents:
+- researcher
+- technical-writer
+
+tools: []
+themes: []
+context: []
+
+dependencies: []
+
+post_install:
+- "Run: python tools/platform/generate_instructions.py"
+- "Available skills: building-apps"
+- "Available agents: researcher, technical-writer"

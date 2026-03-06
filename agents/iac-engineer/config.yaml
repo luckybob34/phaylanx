@@ -1,0 +1,24 @@
+name: iac-engineer
+description: Senior IaC Engineer - translates architecture designs into production-grade Terraform and Bicep code
+model: claude-opus-4
+
+linked_skills:
+  - deploying-infrastructure
+  - designing-architecture
+
+linked_agents:
+  - aws-architect
+  - azure-architect
+  - devops-engineer
+  - technical-writer
+
+required_mcps: []
+
+context:
+  files: []
+  notes: |
+    Add IaC reference material to agents/iac-engineer/context/:
+    - Terraform module templates and patterns
+    - Bicep module templates
+    - Naming convention references (Azure CAF, AWS tagging)
+    - State backend configuration examples

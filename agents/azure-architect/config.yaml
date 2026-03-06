@@ -1,0 +1,28 @@
+name: azure-architect
+description: Senior Azure Solutions Architect - designs cloud architectures following Well-Architected and Cloud Adoption Frameworks
+model: claude-opus-4
+
+linked_skills:
+  - designing-architecture
+  - planning-cloud-migration
+  - reviewing-architecture
+
+linked_agents:
+  - aws-architect
+  - iac-engineer
+  - devops-engineer
+  - technical-writer
+  - proposal-writer
+
+required_mcps: []
+
+context:
+  files: []
+  notes: |
+    Add Azure-specific reference material to agents/azure-architect/context/:
+    - Well-Architected Framework review checklist
+    - Cloud Adoption Framework migration phases
+    - Landing zone architecture templates
+    - Common architecture patterns from Azure Architecture Center
+    - Pricing baselines for common configurations
+    - Azure Policy and governance templates

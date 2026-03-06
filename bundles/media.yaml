@@ -1,0 +1,26 @@
+# Media Bundle
+name: media
+version: "1.0"
+description: Visual asset generation including architecture diagrams and proposal graphics
+
+skills:
+- creating-visuals
+- generating-architecture-diagrams
+- generating-proposal-visuals
+
+agents:
+- creative-director
+
+tools:
+- media
+
+themes: []
+context: []
+
+dependencies: []
+
+post_install:
+- "Run: python tools/platform/generate_instructions.py"
+- "Available skills: creating-visuals, generating-architecture-diagrams, generating-proposal-visuals"
+- "Available agents: creative-director"
+- "Note: Requires image generation API key (e.g., GOOGLE_API_KEY for Imagen)"

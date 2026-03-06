@@ -127,7 +127,70 @@ phalanx/
 │   └── pptx/             # PowerPoint templates
 └── context/              # Brand guides and component docs
     └── brand/
+        ├── component-library.md   # Shared components (brand-agnostic)
+        └── brands/                # Per-brand references
+            ├── credera.md
+            ├── quanta.md
+            └── minimal.md
 ```
+
+---
+
+## Brand Themes
+
+Phalanx separates **shared components** from **brand-specific styling** so you can add new brands without touching the component library.
+
+### Architecture
+
+| Layer | File | Purpose |
+|-------|------|---------|
+| **Contract** | `core/context/templates/presentations/themes/_contract.md` | CSS custom properties and selectors every theme must implement |
+| **Components** | `context/brand/component-library.md` | Brand-agnostic HTML components (layouts, metrics, cards, flows, timelines, etc.) |
+| **Theme CSS** | `themes/html/<brand>.css` | Visual implementation — colors, fonts, spacing |
+| **Brand Reference** | `context/brand/brands/<brand>.md` | Color tokens, typography, logo usage, brand-only components |
+
+### Included Brands
+
+| Brand | CSS | Reference | Notes |
+|-------|-----|-----------|-------|
+| **Minimal** | `themes/html/minimal.css` *(core)* | `brands/minimal.md` | System fonts, slate/blue palette, works offline |
+| **Credera** | `themes/html/credera.css` | `brands/credera.md` | 3 color variants, Source Serif Pro + Lato, 11 extended components |
+| **Quanta** | `themes/html/quanta.css` | `brands/quanta.md` | Oswald + Source Sans 3, pattern overlays, Bolt/Infrared accents |
+
+### Adding a New Brand
+
+1. **Read the contract** — `core/context/templates/presentations/themes/_contract.md` defines every CSS custom property and selector your theme must implement.
+
+2. **Clone the minimal theme** as a starting point:
+   ```bash
+   cp themes/html/minimal.css themes/html/mybrand.css
+   ```
+
+3. **Update CSS custom properties** — at minimum, set these in `:root`:
+   ```css
+   :root {
+       --primary: #1A1A2E;      /* Dark backgrounds, text */
+       --accent: #E94560;       /* Highlights, borders, badges */
+       --accent-light: #FF6B81; /* Hover states */
+       --accent-dark: #C73E54;  /* Pressed states */
+       --light-gray: #F5F5F5;   /* Light slide backgrounds */
+       --font-heading: 'Your Heading Font', sans-serif;
+       --font-body: 'Your Body Font', sans-serif;
+   }
+   ```
+
+4. **Create a brand reference** at `context/brand/brands/mybrand.md` documenting:
+   - Color token table (all custom property values)
+   - Typography stack (heading and body fonts, weights, letter-spacing)
+   - Logo usage rules (if applicable)
+   - Any brand-only components added in the CSS
+   - Section color strategy (which slide types to use where)
+
+5. **Test** — verify all 4 slide types render correctly (`.slide-dark`, `.slide-light`, `.slide-gray`, `.slide-accent`) and that every shared component from the component library works with your new theme.
+
+6. **Register** — add the theme to `bundles/presentations-html.yaml` and `catalog.yaml` so it's installable via the registry.
+
+All shared components from `component-library.md` work automatically — brand CSS only needs to define the visual tokens and any additional brand-specific selectors.
 
 ---
 

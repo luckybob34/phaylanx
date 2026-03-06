@@ -24,3 +24,7 @@ Thumbs.db
 data/
 memory/
 workspace/
+
+# Proprietary brands (keep minimal only)
+context/brands/credera/
+context/brands/quanta/

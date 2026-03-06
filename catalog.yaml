@@ -1,10 +1,10 @@
-# Phaylanx Bundle Catalog
+# Phalanx Bundle Catalog
 # ======================
 # Searchable index of all available bundles, standalone skills, agents, and themes.
 # Used by registry.py for --list and --search operations.
 
 version: "1.0"
-registry: https://github.com/luckybob34/phaylanx
+registry: https://github.com/luckybob34/phalanx
 
 bundles:
 

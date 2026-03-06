@@ -1,7 +1,7 @@
-# Phaylanx Bootstrap
+# Phalanx Bootstrap
 
 > AI-readable installation playbook. Execute these steps in order to set up a new
-> GOTCHA Framework (Skills Edition) instance from the Phaylanx registry.
+> GOTCHA Framework (Skills Edition) instance from the Phalanx registry.
 
 ---
 
@@ -60,9 +60,9 @@ The core is required. Fetch it from the registry.
 ### Option A: Git Sparse-Checkout (Preferred)
 
 ```bash
-REPO="https://github.com/luckybob34/phaylanx"
+REPO="https://github.com/luckybob34/phalanx"
 BRANCH="main"
-CLONE_DIR=".tmp/phaylanx-core"
+CLONE_DIR=".tmp/phalanx-core"
 
 git clone --filter=blob:none --no-checkout --depth=1 -b $BRANCH $REPO $CLONE_DIR
 cd $CLONE_DIR
@@ -77,7 +77,7 @@ cd -
 If git is unavailable, use the GitHub REST API to download `core/` contents:
 
 ```
-GET https://api.github.com/repos/luckybob34/phaylanx/git/trees/main?recursive=1
+GET https://api.github.com/repos/luckybob34/phalanx/git/trees/main?recursive=1
 ```
 
 Filter for entries starting with `core/` and download each blob.
@@ -117,7 +117,7 @@ Add the registry section to `config.yaml` if not already present:
 ```yaml
 # Registry configuration
 registry:
-  url: https://github.com/luckybob34/phaylanx
+  url: https://github.com/luckybob34/phalanx
   branch: main
   auth_env: GITHUB_PAT
   cache_dir: .tmp/registry-cache
@@ -143,8 +143,8 @@ cat > memory/MEMORY.md << 'EOF'
 
 ## Key Facts
 
-- Framework: GOTCHA Skills Edition (Phaylanx)
-- Installed via: Phaylanx bootstrap
+- Framework: GOTCHA Skills Edition (Phalanx)
+- Installed via: Phalanx bootstrap
 
 ## Learned Behaviors
 
@@ -311,7 +311,7 @@ Expected: All checks pass, all skills validate, installed bundles listed.
 Remove the temporary checkout:
 
 ```bash
-rm -rf .tmp/phaylanx-core
+rm -rf .tmp/phalanx-core
 ```
 
 ---
@@ -320,7 +320,7 @@ rm -rf .tmp/phaylanx-core
 
 Tell the user:
 
-> ✓ GOTCHA Framework (Skills Edition) installed via Phaylanx.
+> ✓ GOTCHA Framework (Skills Edition) installed via Phalanx.
 >
 > **Core skills**: 8 (memory, workspaces, agents, manifests, skill creation, improvement, system restore, bundle management)
 > **Bundles installed**: [list]

@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="phalanx-logo.jpg" alt="Phaylanx Framework" width="600">
+  <img src="phalanx-logo.jpg" alt="Phalanx Framework" width="600">
 </p>
 
-# Phaylanx
+# Phalanx
 
 **A modular AI skills framework built on the [GOTCHA architecture](https://agentskills.io/) for Claude Code, GitHub Copilot, and OpenAI Codex.**
 
-Named after the ancient Greek and Roman military formation where interlocking shields created an unstoppable coordinated unit, **Phaylanx** applies the same principle to AI: specialist agents, each with a defined role and position, working in tight formation through deterministic tools and structured workflows. No single agent fights alone. The formation is the strength.
+Named after the ancient Greek and Roman military formation where interlocking shields created an unstoppable coordinated unit, **Phalanx** applies the same principle to AI: specialist agents, each with a defined role and position, working in tight formation through deterministic tools and structured workflows. No single agent fights alone. The formation is the strength.
 
-Phaylanx provides a minimal core of essential skills — memory management, workspace organization, agent invocation, manifest checking, skill creation, self-improvement, system restoration, and bundle management — then lets you install optional bundles for cloud architecture, presentations, proposals, media generation, and more.
+Phalanx provides a minimal core of essential skills — memory management, workspace organization, agent invocation, manifest checking, skill creation, self-improvement, system restoration, and bundle management — then lets you install optional bundles for cloud architecture, presentations, proposals, media generation, and more.
 
 ---
 
@@ -16,7 +16,7 @@ Phaylanx provides a minimal core of essential skills — memory management, work
 
 Create a new project directory, open your AI coding assistant, and say:
 
-> **"Bootstrap this project using https://github.com/luckybob34/phaylanx"**
+> **"Bootstrap this project using https://github.com/luckybob34/phalanx"**
 
 The AI will fetch [bootstrap.md](bootstrap.md), detect your platform, install the core framework, generate the correct configuration files, initialize memory, and offer optional bundles — all automatically.
 
@@ -96,7 +96,7 @@ Or just tell your AI: *"Install the cloud architecture bundle"* — the `install
 ## Repository Structure
 
 ```
-phaylanx/
+phalanx/
 ├── bootstrap.md          # AI-readable installation playbook
 ├── catalog.yaml          # Searchable bundle index
 ├── README.md
@@ -133,7 +133,7 @@ phaylanx/
 
 ## How It Works
 
-Phaylanx uses the **GOTCHA Framework** — a 6-layer architecture that separates what AI is good at (reasoning, flexibility) from what must be deterministic (tool execution, file operations):
+Phalanx uses the **GOTCHA Framework** — a 6-layer architecture that separates what AI is good at (reasoning, flexibility) from what must be deterministic (tool execution, file operations):
 
 - **Skills** define workflows as markdown process docs
 - **Tools** are Python scripts that execute deterministically
@@ -156,7 +156,7 @@ default_tone: professional
 
 # Registry (added during bootstrap)
 registry:
-  url: https://github.com/luckybob34/phaylanx
+  url: https://github.com/luckybob34/phalanx
   branch: main
   auth_env: GITHUB_PAT
   cache_dir: .tmp/registry-cache

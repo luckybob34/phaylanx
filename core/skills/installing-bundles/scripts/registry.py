@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Phaylanx Registry Tool
+Phalanx Registry Tool
 ======================
 Searches, installs, updates, and removes skill bundles from a remote
 git-hosted registry.  Designed to be invoked by the installing-bundles
@@ -39,10 +39,10 @@ from typing import Any
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-DEFAULT_REGISTRY_URL = "https://github.com/luckybob34/phaylanx"
+DEFAULT_REGISTRY_URL = "https://github.com/luckybob34/phalanx"
 DEFAULT_BRANCH = "main"
 CATALOG_PATH = "catalog.yaml"          # path inside the registry repo
-INSTALLED_MARKER = ".phaylanx-installed.json"
+INSTALLED_MARKER = ".phalanx-installed.json"
 
 # ---------------------------------------------------------------------------
 # Helpers — project root discovery
@@ -98,7 +98,7 @@ def _github_api_url(repo_url: str) -> str:
 
 
 def _api_headers(token: str | None) -> dict[str, str]:
-    headers = {"Accept": "application/vnd.github.v3+json", "User-Agent": "phaylanx-registry"}
+    headers = {"Accept": "application/vnd.github.v3+json", "User-Agent": "phalanx-registry"}
     if token:
         headers["Authorization"] = f"token {token}"
     return headers
@@ -650,7 +650,7 @@ def _print_bundle_summary(bundle: dict[str, Any]) -> None:
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Phaylanx Registry — bundle management")
+    parser = argparse.ArgumentParser(description="Phalanx Registry — bundle management")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--list", action="store_true", help="List all available bundles")
     group.add_argument("--search", type=str, metavar="QUERY", help="Search bundles by keyword")

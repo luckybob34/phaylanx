@@ -28,7 +28,7 @@ models:
 
 # Registry configuration (for bundle installation)
 registry:
-  url: https://github.com/luckybob34/phaylanx
+  url: https://github.com/luckybob34/phalanx
   branch: main
   auth_env: GITHUB_PAT
   cache_dir: .tmp/registry-cache

@@ -2,21 +2,21 @@
 ---
 name: installing-bundles
 description: >
-  Searches, installs, updates, and removes skill bundles from the Phaylanx
+  Searches, installs, updates, and removes skill bundles from the Phalanx
   registry. Handles natural language search against the catalog, git
   sparse-checkout for content fetch (with GitHub API fallback), and local
   file placement. Invoke with /installing-bundles or when the user asks to
   add capabilities, install a bundle, or extend the system.
 allowed-tools: Terminal
 metadata:
-  author: phaylanx
+  author: phalanx
   version: "1.0"
   spec: agentskills.io/1.0
 ---
 
 # Bundle Installation Workflow
 
-Manages the lifecycle of optional bundles from the Phaylanx registry.
+Manages the lifecycle of optional bundles from the Phalanx registry.
 
 ---
 
@@ -37,7 +37,7 @@ Read `config.yaml` at project root and find the `registry:` section:
 
 ```yaml
 registry:
-  url: https://github.com/luckybob34/phaylanx
+  url: https://github.com/luckybob34/phalanx
   branch: main
   auth_env: GITHUB_PAT          # optional for public repos
   cache_dir: .tmp/registry-cache
@@ -45,7 +45,7 @@ registry:
 ```
 
 If no `registry:` section exists, use defaults:
-- url: `https://github.com/luckybob34/phaylanx`
+- url: `https://github.com/luckybob34/phalanx`
 - branch: `main`
 
 ---

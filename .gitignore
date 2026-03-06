@@ -25,6 +25,6 @@ data/
 memory/
 workspace/
 
-# Proprietary brands (keep minimal only)
-context/brands/credera/
-context/brands/quanta/
+# Only ship minimal brand (exclude all others)
+context/brands/*/
+!context/brands/minimal/

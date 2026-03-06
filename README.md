@@ -33,7 +33,7 @@ This works on **Claude Code**, **GitHub Copilot**, and **OpenAI Codex**. The boo
 
 ### Setup Walkthrough
 
-<video src="docs/media/Phalanx-Setup.mp4" controls width="100%"></video>
+[![Setup Walkthrough](https://img.shields.io/badge/▶_Watch-Setup_Walkthrough-blue?style=for-the-badge&logo=github)](https://github.com/td-project-ai/phalanx/blob/main/docs/media/Phalanx-Setup.mp4)
 
 *6-minute walkthrough showing a fresh Phalanx environment setup from scratch.*
 

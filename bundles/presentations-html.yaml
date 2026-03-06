@@ -11,9 +11,7 @@ agents: []
 
 tools: []
 
-themes:
-- html/credera.css
-- html/quanta.css
+themes: []
 
 context:
 - brand/component-library.md
@@ -26,4 +24,4 @@ dependencies: []
 post_install:
 - "Run: python tools/platform/generate_instructions.py"
 - "Available skills: building-html-decks, building-university-decks"
-- "Themes installed: credera.css, quanta.css (minimal.css included in core)"
+- "Themes installed: CSS is embedded in brand files (credera.md, quanta.md; minimal.md included in core)"

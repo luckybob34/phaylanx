@@ -52,7 +52,7 @@ Create `workspace/<project-slug>/degree-outline.md`:
 Create `workspace/<project-slug>/presentation.html` using the Phalanx slide engine:
 
 1. Read `context/templates/presentations/base-template.html`
-2. Use **Minimal theme** — inline CSS from `context/templates/presentations/themes/minimal.css`
+2. Use **Minimal theme** — inline CSS from the `## Theme CSS` section in `context/brand/brands/minimal.md`
 3. Follow the `building-html-decks` skill rules
 
 ### Slide Structure (14 slides)
@@ -91,5 +91,5 @@ Create `workspace/<project-slug>/presentation.html` using the Phalanx slide engi
 | File | Purpose |
 |------|---------|
 | `context/templates/presentations/base-template.html` | HTML + JS engine |
-| `context/templates/presentations/themes/minimal.css` | Theme CSS |
+| `context/brand/brands/minimal.md` | Brand reference + theme CSS (under `## Theme CSS`) |
 | `context/templates/presentations/themes/_contract.md` | CSS contract |

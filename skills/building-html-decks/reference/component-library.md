@@ -131,11 +131,11 @@ Brand-specific tokens, typography, logos, and extended components are in separat
 
 ## Adding Brand Themes
 
-Brand themes are CSS files satisfying the contract (`context/templates/presentations/themes/_contract.md`):
+Brand themes are consolidated into brand reference files that satisfy the contract (`context/templates/presentations/themes/_contract.md`):
 
-1. Create a `.css` file implementing all required selectors and custom properties
-2. Place in `context/templates/presentations/themes/`
-3. Create a brand reference file at `context/brand/brands/<name>.md` with tokens, typography, and any extended components
+1. Create a brand file at `context/brand/brands/<name>.md` with tokens, typography, and any extended components
+2. Add a `## Theme CSS` section at the bottom with the complete CSS implementing all required selectors and custom properties
+3. Place the file in `context/brand/brands/`
 
 ### Theme Variants
 

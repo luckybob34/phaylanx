@@ -90,9 +90,7 @@ bundles:
   - building-university-decks
   agents: []
   tools: []
-  themes:
-  - html/credera.css
-  - html/quanta.css
+  themes: []
   context:
   - brand/component-library.md
   - brand/brands/credera.md

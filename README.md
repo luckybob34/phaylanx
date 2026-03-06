@@ -144,8 +144,7 @@ Phalanx separates **shared components** from **brand-specific styling** so you c
 |-------|------|---------|
 | **Contract** | `core/context/templates/presentations/themes/_contract.md` | CSS custom properties and selectors every theme must implement |
 | **Components** | `context/brand/component-library.md` | Brand-agnostic HTML components (layouts, metrics, cards, flows, timelines, etc.) |
-| **Theme CSS** | `themes/html/<brand>.css` | Visual implementation — colors, fonts, spacing |
-| **Brand Reference** | `context/brand/brands/<brand>.md` | Color tokens, typography, logo usage, brand-only components |
+| **Brand File** | `context/brand/brands/<brand>.md` | Color tokens, typography, logo usage, brand-only components + complete theme CSS (under `## Theme CSS`) |
 
 ### Included Brand
 
@@ -153,8 +152,7 @@ The **Minimal** theme ships with core — system fonts, slate/blue palette, work
 
 | File | Purpose |
 |------|--------|
-| `themes/html/minimal.css` | Default theme CSS (installed with core) |
-| `context/brand/brands/minimal.md` | Token reference for the minimal theme |
+| `context/brand/brands/minimal.md` | Default brand reference + theme CSS (installed with core) |
 
 Additional brand themes (e.g., client-specific branding) can be installed via bundles or created manually using the steps below.
 
@@ -162,9 +160,9 @@ Additional brand themes (e.g., client-specific branding) can be installed via bu
 
 1. **Read the contract** — `core/context/templates/presentations/themes/_contract.md` defines every CSS custom property and selector your theme must implement.
 
-2. **Clone the minimal theme** as a starting point:
+2. **Clone the minimal brand** as a starting point:
    ```bash
-   cp themes/html/minimal.css themes/html/mybrand.css
+   cp context/brand/brands/minimal.md context/brand/brands/mybrand.md
    ```
 
 3. **Update CSS custom properties** — at minimum, set these in `:root`:

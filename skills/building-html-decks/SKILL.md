@@ -58,9 +58,8 @@ For **Quanta**: see `context/brand/brands/quanta.md` for brand guidelines.
 |------|---------|
 | `context/templates/presentations/base-template.html` | Canonical HTML + JS engine |
 | `context/templates/presentations/themes/_contract.md` | CSS contract |
-| Selected theme `.css` file | Visual tokens |
+| `context/brand/brands/<theme>.md` | Brand reference + theme CSS (under `## Theme CSS`) |
 | `reference/component-library.md` (this skill) | Full component reference |
-| `context/brand/brands/<theme>.md` (if brand theme) | Brand tokens, extended components |
 
 ### Plan Slide Structure
 

@@ -563,7 +563,7 @@ Flexible pill tags in multiple color variants.
 ## Creating a New Presentation (All Themes)
 
 1. Copy `base-template.html` → `workspace/<project>/presentation.html`
-2. Change the `<link>` theme to the desired CSS (`minimal.css`, `credera.css`, `quanta.css`)
+2. Choose a brand theme from `context/brand/brands/` and inline the CSS from its `## Theme CSS` section into a `<style>` block
 3. For variants, add `data-variant` to `<html>` (e.g., `data-variant="sage"`)
 4. Update `<title>`, `.nav-brand`, and `TOTAL_SLIDES`
 5. Replace placeholder slides — keep `data-index` sequential from 0

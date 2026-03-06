@@ -6,6 +6,8 @@
 
 **A modular AI skills framework built on the [GOTCHA architecture](https://agentskills.io/) for Claude Code, GitHub Copilot, and OpenAI Codex.**
 
+Named after the ancient Greek and Roman military formation where interlocking shields created an unstoppable coordinated unit, **Phaylanx** applies the same principle to AI: specialist agents, each with a defined role and position, working in tight formation through deterministic tools and structured workflows. No single agent fights alone. The formation is the strength.
+
 Phaylanx provides a minimal core of essential skills — memory management, workspace organization, agent invocation, manifest checking, skill creation, self-improvement, system restoration, and bundle management — then lets you install optional bundles for cloud architecture, presentations, proposals, media generation, and more.
 
 ---

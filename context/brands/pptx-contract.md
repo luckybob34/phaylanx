@@ -1,26 +1,24 @@
 # PPTX Theme Contract
 
 > Every PPTX theme directory must contain these files and satisfy this contract.
-> This mirrors `_contract.md` for HTML themes.
+> This mirrors `html-contract.md` for HTML themes.
 
 ---
 
 ## Required Files
 
 ```
-brands/<theme-name>/
+context/brands/<theme-name>/
 └── template.pptx          # Source PPTX with slide masters, layouts, colour scheme
+└── pptx-config.yaml      # Layout mapping, colour tokens, font config
+└── pptx-components.md    # Component renderer documentation
 ```
 
-The `config.yaml` (layout mapping, colour tokens, font config) and `components.md` (component renderer docs) are now embedded in the brand file at `context/brand/brands/<theme-name>.md` under:
-- `## PPTX Config` — fenced YAML block with full config
-- `## PPTX Components` — component reference documentation
-
-`render_pptx.py` reads the YAML config directly from the brand `.md` file.
+`render_pptx.py` reads `pptx-config.yaml` directly from the brand folder.
 
 ## PPTX Config Structure
 
-The following YAML structure must appear in the brand `.md` file under `## PPTX Config` in a fenced `yaml` code block:
+The following YAML structure must appear in the brand folder's `pptx-config.yaml`:
 
 ```yaml
 name: theme-name

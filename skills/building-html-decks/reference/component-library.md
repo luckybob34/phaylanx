@@ -119,23 +119,22 @@ When building a deck, plan the component sequence during outlining. If 3 slides 
 
 ## Theme-Specific Components
 
-Brand-specific tokens, typography, logos, and extended components are in separate brand files under `context/brand/brands/`:
+Brand-specific tokens, typography, logos, and extended components are in separate brand folders under `context/brands/`:
 
-| Brand File | Contents |
+| Brand Folder | Key Files |
 |---|---|
-| `context/brand/brands/credera.md` | Color tokens, 3 variants, logo SVG, 11 Credera-only components |
-| `context/brand/brands/quanta.md` | Color tokens, pattern overlays, logo usage, photography, sub-branding |
-| `context/brand/brands/minimal.md` | System-font defaults (no brand-specific components) |
+| `context/brands/credera/` | `brand.md` (color tokens, 3 variants, logo SVG, components), `theme.css` |
+| `context/brands/quanta/` | `brand.md` (color tokens, pattern overlays, logo usage, photography), `theme.css` |
+| `context/brands/minimal/` | `brand.md` (system-font defaults), `theme.css` |
 
 ---
 
 ## Adding Brand Themes
 
-Brand themes are consolidated into brand reference files that satisfy the contract (`context/templates/presentations/themes/_contract.md`):
+Each brand lives in its own folder under `context/brands/<name>/` with separate files, satisfying the contract (`context/brands/html-contract.md`):
 
-1. Create a brand file at `context/brand/brands/<name>.md` with tokens, typography, and any extended components
-2. Add a `## Theme CSS` section at the bottom with the complete CSS implementing all required selectors and custom properties
-3. Place the file in `context/brand/brands/`
+1. Create a folder `context/brands/<name>/` with `brand.md` (tokens, typography, extended components) and `theme.css` (complete CSS implementing all required selectors and custom properties)
+2. Place the files in `context/brands/<name>/`
 
 ### Theme Variants
 

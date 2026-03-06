@@ -92,10 +92,13 @@ bundles:
   tools: []
   themes: []
   context:
-  - brand/component-library.md
-  - brand/brands/credera.md
-  - brand/brands/quanta.md
-  - brand/brands/minimal.md
+  - brands/component-library.md
+  - brands/credera/brand.md
+  - brands/credera/theme.css
+  - brands/quanta/brand.md
+  - brands/quanta/theme.css
+  - brands/minimal/brand.md
+  - brands/minimal/theme.css
 
 - name: presentations-pptx
   description: PowerPoint presentations from YAML outlines with branded templates

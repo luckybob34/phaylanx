@@ -29,7 +29,7 @@ Create branded PowerPoint presentations from structured YAML outlines.
 3. **Goal?** — Inform, persuade, teach, update.
 4. **Slide count?** — Default: 8-15.
 5. **Format?** — If user says "presentation", ask: HTML or PPTX?
-6. **Brand?** — Check brand files in `context/brand/brands/`.
+6. **Brand?** — Check brand folders in `context/brands/`.
 
 ---
 
@@ -37,7 +37,7 @@ Create branded PowerPoint presentations from structured YAML outlines.
 
 ### Theme Selection
 
-Available themes are brand files in `context/brand/brands/`.
+Available themes are brand folders in `context/brands/`.
 
 **Credera** variants:
 1. **Default** — Coral Red `#E55F4C` accent
@@ -49,8 +49,8 @@ Available themes are brand files in `context/brand/brands/`.
 | File | Purpose |
 |------|---------|
 | `reference/outline-spec.md` (this skill) | Full YAML outline format |
-| Brand file `## PPTX Config` section | Layout mapping, colours, fonts |
-| Brand file `## PPTX Components` section | Available renderers |
+| `context/brands/<name>/pptx-config.yaml` | Layout mapping, colours, fonts |
+| `context/brands/<name>/pptx-components.md` | Available renderers |
 
 ### Plan Slides
 
@@ -156,7 +156,7 @@ Confirm file location. To change variant, re-render with `-v <variant>`. For HTM
 ## Edge Cases
 
 - **No content** — Ask for source material
-- **Theme unavailable** — Offer to create per `context/brand/pptx-contract.md`
+- **Theme unavailable** — Offer to create per `context/brands/pptx-contract.md`
 - **Very long content** — Split into multiple decks, max ~20 slides
 - **Content update** — Edit YAML and re-render (idempotent)
 - **Both formats** — Same outline, render to both HTML and PPTX

@@ -63,66 +63,56 @@ from .components.structure import (
 # Theme loader
 # ---------------------------------------------------------------------------
 
-BRANDS_DIR = Path(__file__).resolve().parent.parent.parent / "context" / "templates" / "presentations" / "themes" / "brands"
-
-
-def _extract_pptx_config(brand_file: Path) -> str | None:
-    """Extract PPTX config YAML from a brand .md file.
-
-    Looks for a ``## PPTX Config`` heading followed by a fenced yaml block.
-    Returns the YAML string or None if not found.
-    """
-    text = brand_file.read_text(encoding="utf-8")
-    in_section = False
-    in_code = False
-    yaml_lines: list[str] = []
-
-    for line in text.splitlines():
-        if line.startswith("## PPTX Config"):
-            in_section = True
-            continue
-        if in_section and line.startswith("## "):
-            break  # hit next section
-        if in_section and line.strip().startswith("```yaml"):
-            in_code = True
-            continue
-        if in_code and line.strip() == "```":
-            break
-        if in_code:
-            yaml_lines.append(line)
-
-    return "\n".join(yaml_lines) if yaml_lines else None
+BRANDS_DIR = Path(__file__).resolve().parent.parent.parent / "context" / "brands"
 
 
 def load_theme(theme_name: str, variant: str = "default") -> dict:
     """Load a PPTX theme config and apply variant overrides.
 
     Resolution order:
-      1. Brand .md file with embedded ``## PPTX Config`` YAML block
-      2. Standalone ``config.yaml`` in brands/<name>/ (legacy fallback)
+      1. Standalone ``pptx-config.yaml`` in brands/<name>/
+      2. Legacy fallback: parse ``## PPTX Config`` from brands/<name>/brand.md
 
     The binary ``template.pptx`` lives at brands/<name>/template.pptx.
     """
     theme: dict | None = None
+    brand_dir = BRANDS_DIR / theme_name
 
-    # 1. Try brand .md file first
-    brand_file = BRANDS_DIR / f"{theme_name}.md"
-    if brand_file.exists():
-        config_yaml = _extract_pptx_config(brand_file)
-        if config_yaml:
-            theme = yaml.safe_load(config_yaml)
-
-    # 2. Fallback to standalone config.yaml in brand subdirectory
-    if theme is None:
-        brand_dir = BRANDS_DIR / theme_name
-        config_path = brand_dir / "config.yaml"
-        if not config_path.exists():
-            raise FileNotFoundError(
-                f"No PPTX config found for '{theme_name}'. "
-                f"Checked: {brand_file}, {config_path}"
-            )
+    # 1. Try standalone pptx-config.yaml first
+    config_path = brand_dir / "pptx-config.yaml"
+    if config_path.exists():
         with open(config_path, "r", encoding="utf-8") as f:
             theme = yaml.safe_load(f)
+
+    # 2. Legacy fallback: parse from brand.md
+    if theme is None:
+        brand_file = brand_dir / "brand.md"
+        if brand_file.exists():
+            text = brand_file.read_text(encoding="utf-8")
+            in_section = False
+            in_code = False
+            yaml_lines: list[str] = []
+            for line in text.splitlines():
+                if line.startswith("## PPTX Config"):
+                    in_section = True
+                    continue
+                if in_section and line.startswith("## "):
+                    break
+                if in_section and line.strip().startswith("```yaml"):
+                    in_code = True
+                    continue
+                if in_code and line.strip() == "```":
+                    break
+                if in_code:
+                    yaml_lines.append(line)
+            if yaml_lines:
+                theme = yaml.safe_load("\n".join(yaml_lines))
+
+    if theme is None:
+        raise FileNotFoundError(
+            f"No PPTX config found for '{theme_name}'. "
+            f"Checked: {config_path}, {brand_dir / 'brand.md'}"
+        )
 
     # Apply variant overrides
     if variant and variant != "default":
@@ -131,8 +121,7 @@ def load_theme(theme_name: str, variant: str = "default") -> dict:
             overrides = variants[variant]
             theme["colors"] = {**theme.get("colors", {}), **overrides}
 
-    # Template.pptx lives in the brand subdirectory
-    brand_dir = BRANDS_DIR / theme_name
+    # Template.pxtx lives in the brand subdirectory
     theme["_template_path"] = str(brand_dir / "template.pptx")
     theme["_theme_dir"] = str(brand_dir)
 

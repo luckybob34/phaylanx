@@ -183,22 +183,26 @@ Slide decks must use a variety of visual patterns. Match the visual shape to the
 
 ### Brand Themes
 
-Available brand themes for presentations. Each brand `.md` file contains both HTML CSS and (where applicable) PPTX configuration. Binary `template.pptx` files remain separate.
+Available brand themes for presentations. Each brand has its own folder under `context/brands/` with separate files per deliverable type. Binary `template.pptx` files live in the brand folder (local-only, excluded from git).
 
-| Brand | Brand File | PPTX template.pptx | Notes |
+| Brand | Folder | Key Files | Notes |
 |---|---|---|---|
-| **Minimal** | `themes/brands/minimal.md` | — | Brand-agnostic default, system fonts |
-| **Credera** | `themes/brands/credera.md` | `brands/credera/template.pptx` | Source Serif Pro + Lato, 3 color variants |
-| **Quanta** | `themes/brands/quanta.md` | — | Oswald + Source Sans 3, pattern overlays |
+| **Minimal** | `context/brands/minimal/` | `brand.md`, `theme.css` | Brand-agnostic default, system fonts |
+| **Credera** | `context/brands/credera/` | `brand.md`, `theme.css`, `pptx-config.yaml`, `pptx-components.md`, `template.pptx` | Source Serif Pro + Lato, 3 color variants |
+| **Quanta** | `context/brands/quanta/` | `brand.md`, `theme.css` | Oswald + Source Sans 3, pattern overlays |
 
-All themes share the same component library: `themes/component-library.md` (brand-agnostic). Brand-specific tokens, typography, extended components, theme CSS, and PPTX config all live in a single file per brand under `themes/brands/`.
+Each brand folder contains:
+- `brand.md` — Brand reference documentation (tokens, typography, extended components)
+- `theme.css` — Complete HTML theme CSS
+- `pptx-config.yaml` — PPTX layout/color/font config (if the brand has a PPTX theme)
+- `pptx-components.md` — PPTX component renderer docs (if applicable)
 
-Each brand `.md` file may contain:
-- `## Theme CSS` — complete HTML theme CSS
-- `## PPTX Config` — PPTX config YAML for `render_pptx.py`
-- `## PPTX Components` — PPTX component renderer docs
+Shared (brand-agnostic) files at `context/brands/`:
+- `component-library.md` — Shared HTML component library
+- `html-contract.md` — CSS variable and selector contract
+- `pptx-contract.md` — PPTX theme contract
 
-All theme paths are relative to `context/templates/presentations/`. See `themes/_contract.md` for the CSS theme contract, `themes/component-library.md` for shared component HTML snippets, `themes/brands/<name>.md` for brand-specific references, and `hardprompts/presentations/deck-skill.md` for the HTML deck builder skill.
+See `context/brands/html-contract.md` for the CSS theme contract, `context/brands/component-library.md` for shared component HTML snippets, `context/brands/<name>/brand.md` for brand-specific references, and the `building-html-decks` skill for the HTML deck builder workflow.
 
 ---
 

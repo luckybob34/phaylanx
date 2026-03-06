@@ -117,28 +117,30 @@ def check_databases(root: Path) -> list[tuple[str, bool, str]]:
 def check_themes(root: Path) -> list[tuple[str, bool, str]]:
     """Check that theme CSS files exist for configured themes."""
     results = []
-    themes_dir = root / "context" / "templates" / "presentations" / "themes"
-    if not themes_dir.is_dir():
-        results.append(("context/templates/presentations/themes/", False, "themes directory missing"))
+    # Check HTML theme CSS files in context/brands/
+    brands_dir = root / "context" / "brands"
+    if not brands_dir.is_dir():
+        results.append(("context/brands/", False, "brands directory missing"))
         return results
 
-    css_files = list(themes_dir.glob("*.css"))
-    if not css_files:
-        results.append(("context/templates/presentations/themes/*.css", False, "no CSS theme files found"))
-    else:
-        for css in sorted(css_files):
-            results.append((f"context/templates/presentations/themes/{css.name}", True, "theme CSS"))
+    brand_css_found = False
+    for brand_folder in sorted(brands_dir.iterdir()):
+        if brand_folder.is_dir():
+            css_file = brand_folder / "theme.css"
+            if css_file.is_file():
+                results.append((f"context/brands/{brand_folder.name}/theme.css", True, "theme CSS"))
+                brand_css_found = True
+    if not brand_css_found:
+        results.append(("context/brands/*/theme.css", False, "no CSS theme files found"))
 
-    # Check PPTX themes if brand subdirectories exist
-    brands_dir = root / "context" / "brand" / "brands"
-    if brands_dir.is_dir():
-        pptx_templates = list(brands_dir.rglob("*.pptx"))
-        if pptx_templates:
-            for t in pptx_templates:
-                rel = t.relative_to(root)
-                results.append((str(rel).replace("\\", "/"), True, "PPTX template"))
-        else:
-            results.append(("context/brand/brands/*/*.pptx", False, "no PPTX templates found"))
+    # Check PPTX themes
+    pptx_templates = list(brands_dir.rglob("*.pptx"))
+    if pptx_templates:
+        for t in pptx_templates:
+            rel = t.relative_to(root)
+            results.append((str(rel).replace("\\", "/"), True, "PPTX template"))
+    else:
+        results.append(("context/brands/*/*.pptx", False, "no PPTX templates found"))
 
     return results
 

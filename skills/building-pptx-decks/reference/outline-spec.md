@@ -9,7 +9,7 @@
 ```yaml
 meta:
   title: "Deck Title"
-  theme: credera            # matches brand name in context/brand/brands/
+  theme: credera            # matches brand folder name in context/brands/
   variant: default          # theme colour variant (default | sage | warm)
   author: ""
   date: ""                  # auto-fills to today if blank

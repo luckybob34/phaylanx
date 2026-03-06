@@ -1,8 +1,8 @@
 # Slide Deck Component Library
 
-> Universal component reference for the Phalanx slide engine. Every component here works with `base-template.html` and **any** theme CSS that satisfies [`_contract.md`](_contract.md). Components use CSS custom properties (`--accent`, `--primary`, etc.) so colors and fonts adapt automatically per theme.
+> Universal component reference for the Phalanx slide engine. Every component here works with `base-template.html` and **any** theme CSS that satisfies [`html-contract.md`](html-contract.md). Components use CSS custom properties (`--accent`, `--primary`, etc.) so colors and fonts adapt automatically per theme.
 >
-> For brand-specific tokens, typography, logos, and brand-only components, see the individual brand files in `themes/brands/`.
+> For brand-specific tokens, typography, logos, and brand-only components, see the individual brand folders (e.g., `credera/brand.md`, `quanta/brand.md`).
 
 ---
 
@@ -563,7 +563,7 @@ Flexible pill tags in multiple color variants.
 ## Creating a New Presentation (All Themes)
 
 1. Copy `base-template.html` → `workspace/<project>/presentation.html`
-2. Choose a brand theme from `context/brand/brands/` and inline the CSS from its `## Theme CSS` section into a `<style>` block
+2. Choose a brand theme folder (e.g., `minimal/`, `credera/`, `quanta/`) — read and inline the CSS from the brand's `theme.css` into the `<style>` block
 3. For variants, add `data-variant` to `<html>` (e.g., `data-variant="sage"`)
 4. Update `<title>`, `.nav-brand`, and `TOTAL_SLIDES`
 5. Replace placeholder slides — keep `data-index` sequential from 0

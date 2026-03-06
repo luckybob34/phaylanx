@@ -123,12 +123,13 @@ phalanx/
 ├── agents/               # Specialist agent definitions
 ├── tools/                # Domain-specific tool scripts
 └── context/              # Brand guides and component docs
-    └── brand/
+    └── brands/
         ├── component-library.md   # Shared components (brand-agnostic)
+        ├── html-contract.md       # HTML CSS theme contract
         ├── pptx-contract.md       # PPTX theme contract spec
-        └── brands/                # Per-brand references
-            ├── minimal.md
-            └── credera/           # PPTX template.pptx (gitignored)
+        ├── minimal/               # Minimal theme (brand.md + theme.css)
+        ├── credera/               # Credera (brand.md, theme.css, pptx-config.yaml, ...)
+        └── quanta/                # Quanta (brand.md + theme.css)
 ```
 
 ---
@@ -141,9 +142,9 @@ Phalanx separates **shared components** from **brand-specific styling** so you c
 
 | Layer | File | Purpose |
 |-------|------|---------|
-| **Contract** | `core/context/templates/presentations/themes/_contract.md` | CSS custom properties and selectors every theme must implement |
-| **Components** | `context/brand/component-library.md` | Brand-agnostic HTML components (layouts, metrics, cards, flows, timelines, etc.) |
-| **Brand File** | `context/brand/brands/<brand>.md` | Color tokens, typography, logo usage, brand-only components + complete theme CSS (under `## Theme CSS`) |
+| **Contract** | `context/brands/html-contract.md` | CSS custom properties and selectors every theme must implement |
+| **Components** | `context/brands/component-library.md` | Brand-agnostic HTML components (layouts, metrics, cards, flows, timelines, etc.) |
+| **Brand Folder** | `context/brands/<brand>/` | `brand.md` (color tokens, typography, logo usage, brand-only components) + `theme.css` (complete CSS) |
 
 ### Included Brand
 
@@ -151,17 +152,17 @@ The **Minimal** theme ships with core — system fonts, slate/blue palette, work
 
 | File | Purpose |
 |------|--------|
-| `context/brand/brands/minimal.md` | Default brand reference + theme CSS (installed with core) |
+| `context/brands/minimal/brand.md` + `theme.css` | Default brand reference + theme CSS (installed with core) |
 
 Additional brand themes (e.g., client-specific branding) can be installed via bundles or created manually using the steps below.
 
 ### Adding a New Brand
 
-1. **Read the contract** — `core/context/templates/presentations/themes/_contract.md` defines every CSS custom property and selector your theme must implement.
+1. **Read the contract** — `context/brands/html-contract.md` defines every CSS custom property and selector your theme must implement.
 
 2. **Clone the minimal brand** as a starting point:
    ```bash
-   cp context/brand/brands/minimal.md context/brand/brands/mybrand.md
+   cp -r context/brands/minimal context/brands/mybrand
    ```
 
 3. **Update CSS custom properties** — at minimum, set these in `:root`:
@@ -177,7 +178,7 @@ Additional brand themes (e.g., client-specific branding) can be installed via bu
    }
    ```
 
-4. **Create a brand reference** at `context/brand/brands/mybrand.md` documenting:
+4. **Create brand documentation** at `context/brands/mybrand/brand.md` documenting:
    - Color token table (all custom property values)
    - Typography stack (heading and body fonts, weights, letter-spacing)
    - Logo usage rules (if applicable)

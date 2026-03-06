@@ -31,6 +31,12 @@ This works on **Claude Code**, **GitHub Copilot**, and **OpenAI Codex**. The boo
 | 5 | Offers optional bundles — pick what you need |
 | 6 | Verifies the installation |
 
+### Setup Walkthrough
+
+<video src="docs/media/Phalanx-Setup.mp4" controls width="100%"></video>
+
+*6-minute walkthrough showing a fresh Phalanx environment setup from scratch.*
+
 ---
 
 ## What's Included
